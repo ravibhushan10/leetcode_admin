@@ -1,5 +1,5 @@
 // ── Admin Auth Guard ──────────────────────────
-const API   = localStorage.getItem('admin_api') || 'http://localhost:5000';
+const API   = localStorage.getItem('admin_api') || 'https://leetcode-admin.vercel.app';
 const TOKEN = localStorage.getItem('admin_token');
 const ADMIN = JSON.parse(localStorage.getItem('admin_user') || 'null');
 
@@ -11,7 +11,7 @@ if (!TOKEN || !ADMIN) {
 // Show admin name in sidebar
 document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('admin-name');
-  if (el && ADMIN) el.textContent = '👤 ' + ADMIN.name;
+  if (el && ADMIN) el.textContent = '' + ADMIN.name;
 });
 
 // ── Shared API helper ─────────────────────────

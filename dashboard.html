@@ -13,15 +13,15 @@
 <!-- Sidebar -->
 <div class="layout">
   <aside class="sidebar">
-    <div class="sidebar-logo">⚙️ <span>CF Admin</span></div>
+    <div class="sidebar-logo"><span>CodeForge Admin</span></div>
     <nav class="sidebar-nav">
-      <button class="nav-btn active" onclick="showTab('problems')">📝 Problems</button>
-      <button class="nav-btn" onclick="showTab('users')">👥 Users</button>
-      <button class="nav-btn" onclick="showTab('stats')">📊 Stats</button>
+      <button class="nav-btn active" onclick="showTab('problems')">Problems</button>
+      <button class="nav-btn" onclick="showTab('users')">Users</button>
+      <button class="nav-btn" onclick="showTab('stats')">Stats</button>
     </nav>
     <div class="sidebar-bottom">
       <div id="admin-name" class="admin-name"></div>
-      <button class="btn btn-ghost btn-sm w-full" onclick="logout()">↩ Sign Out</button>
+      <button class="btn btn-ghost btn-sm w-full" onclick="logout()">Sign Out</button>
     </div>
   </aside>
 
@@ -34,8 +34,8 @@
           <p>Manage all coding problems</p>
         </div>
         <div class="header-actions">
-          <button class="btn btn-secondary" onclick="openDeleteModal()">🗑 Delete by #</button>
-          <button class="btn btn-secondary" onclick="document.getElementById('json-upload').click()">📁 Upload JSON</button>
+          <button class="btn btn-secondary" onclick="openDeleteModal()">Delete by #</button>
+          <button class="btn btn-secondary" onclick="document.getElementById('json-upload').click()">Upload JSON</button>
           <input type="file" id="json-upload" accept=".json" style="display:none" onchange="uploadJSON(this)" />
           <button class="btn btn-primary" onclick="openAddModal()">+ Add Problem</button>
         </div>
@@ -101,17 +101,17 @@
       <div class="page-header"><div><h1>Statistics</h1><p>Platform overview</p></div></div>
       <div class="stats-grid" id="stats-grid">
         <div class="stat-card">
-          <div class="stat-icon">📝</div>
+          <div class="stat-icon"></div>
           <div class="stat-val" id="s-problems">—</div>
           <div class="stat-label">Total Problems</div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">👥</div>
+          <div class="stat-icon"></div>
           <div class="stat-val" id="s-users">—</div>
           <div class="stat-label">Registered Users</div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">⭐</div>
+          <div class="stat-icon"></div>
           <div class="stat-val" id="s-pro">—</div>
           <div class="stat-label">Pro Users</div>
         </div>
@@ -200,7 +200,7 @@
 <!-- ── CONFIRM MODAL ── -->
 <div id="modal-confirm" class="modal-overlay hidden">
   <div class="modal" style="max-width:400px;text-align:center">
-    <div style="font-size:2.5rem;margin-bottom:12px">⚠️</div>
+    
     <h3 id="confirm-msg">Are you sure?</h3>
     <p id="confirm-sub" style="color:var(--text-secondary);font-size:.85rem;margin:8px 0 24px"></p>
     <div style="display:flex;gap:10px;justify-content:center">

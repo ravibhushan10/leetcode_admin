@@ -170,10 +170,10 @@ async function saveProblem() {
   try {
     if (editingId) {
       await apiFetch(`/api/problems/${editingId}`, { method: 'PUT', body: JSON.stringify(payload) });
-      toast(`✅ Updated: ${title}`, 'success');
+      toast(`Updated: ${title}`, 'success');
     } else {
       const result = await apiFetch('/api/problems', { method: 'POST', body: JSON.stringify(payload) });
-      toast(`✅ Added: ${title} (#${result.number})`, 'success');
+      toast(`Added: ${title} (#${result.number})`, 'success');
     }
     closeModal('modal-problem');
     loadProblems();
@@ -194,7 +194,7 @@ async function togglePremium(id, checkbox) {
     const p = allProblems.find(x => x._id === id);
     if (p) p.premium = result.premium;
     updateMiniStats(allProblems);
-    toast(`Premium ${result.premium ? 'enabled ⭐' : 'disabled'}`, 'success');
+    toast(`Premium ${result.premium ? 'enabled ' : 'disabled'}`, 'success');
   } catch (e) {
     checkbox.checked = prev;
     toast('Toggle failed: ' + e.message, 'error');
@@ -241,7 +241,7 @@ async function previewDelete() {
 
   if (!prob) {
     prevEl.style.display = 'block';
-    prevEl.innerHTML = `<span style="color:var(--red)">❌ Problem #${num} not found.</span>`;
+    prevEl.innerHTML = `<span style="color:var(--red)">Problem #${num} not found.</span>`;
     if (confirmBtn) confirmBtn.disabled = true;
     deleteTarget = null;
     return;
@@ -308,12 +308,12 @@ async function uploadJSON(input) {
     });
     const added   = result.results.filter(r => r.status === 'added').length;
     const skipped = result.results.filter(r => r.status === 'skipped').length;
-    toast(`✅ ${added} problem${added !== 1 ? 's' : ''} added, ${skipped} skipped (duplicates)`, 'success');
+    toast(` ${added} problem${added !== 1 ? 's' : ''} added, ${skipped} skipped (duplicates)`, 'success');
     loadProblems();
   } catch (e) {
     toast('Upload failed: ' + e.message, 'error');
   } finally {
-    if (uploadBtn) { uploadBtn.disabled = false; uploadBtn.textContent = '📁 Upload JSON'; }
+    if (uploadBtn) { uploadBtn.disabled = false; uploadBtn.textContent = 'Upload JSON'; }
   }
 }
 
