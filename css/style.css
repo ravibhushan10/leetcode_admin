@@ -417,3 +417,45 @@ textarea.input { resize: vertical; min-height: 80px; }
   .sidebar { width: 180px; }
   .content { padding: 18px 14px; }
 }
+
+/* ── Enhanced spinner ── */
+.spinner {
+  display: inline-block;
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.08);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+.spinner-lg {
+  width: 36px; height: 36px;
+  border-width: 3px;
+  border-color: rgba(0,208,132,0.12);
+  border-top-color: var(--green);
+}
+
+/* Page load animation */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-animate {
+  animation: pageIn 0.3s ease;
+}
+
+/* Table row animation */
+@keyframes rowIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+tbody tr {
+  animation: rowIn 0.2s ease backwards;
+}
+
+/* Loading row improvement */
+.loading-row {
+  text-align: center;
+  padding: 56px;
+  color: var(--text-muted);
+  font-size: .875rem;
+}
