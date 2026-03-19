@@ -18,21 +18,18 @@
 
     <div class="field">
       <label>Email</label>
-      <input id="email" type="email" class="input" placeholder="admin@codeforge.com" value="admin@codeforge.com" />
+      <input id="email" type="email" class="input" placeholder="Enter your email" />
     </div>
     <div class="field">
       <label>Password</label>
-      <input id="password" type="password" class="input" placeholder="••••••••" value="admin123" />
+      <input id="password" type="password" class="input" placeholder="Enter your password" />
     </div>
     <button id="login-btn" class="btn btn-primary w-full" onclick="doLogin()">Sign In</button>
-
-    <p class="login-hint">Default: admin@codeforge.com / admin123</p>
   </div>
 
   <script>
-    const API = 'https://leetcode-backend-1-azl8.onrender.com'; // Change to your backend URL in production
+    const API = 'https://leetcode-backend-1-azl8.onrender.com';
 
-    // Redirect if already logged in
     if (localStorage.getItem('admin_token')) window.location.href = 'dashboard.html';
 
     async function doLogin() {
@@ -60,7 +57,7 @@
         localStorage.setItem('admin_api', API);
         window.location.href = 'dashboard.html';
       } catch(e) {
-        showErr('Cannot connect to server. Check the API URL.');
+        showErr('Cannot connect to server.');
       } finally {
         btn.disabled = false;
         btn.textContent = 'Sign In';
