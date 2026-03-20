@@ -10,7 +10,14 @@
 </head>
 <body>
 
-<!-- Sidebar -->
+<!-- Hamburger (mobile) -->
+<button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+  <span></span><span></span><span></span>
+</button>
+<!-- Sidebar overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<!-- Layout -->
 <div class="layout">
   <aside class="sidebar">
     <div class="sidebar-logo"><span>CodeForge Admin</span></div>
@@ -200,7 +207,7 @@
 <!-- ── CONFIRM MODAL ── -->
 <div id="modal-confirm" class="modal-overlay hidden">
   <div class="modal" style="max-width:400px;text-align:center">
-    
+
     <h3 id="confirm-msg">Are you sure?</h3>
     <p id="confirm-sub" style="color:var(--text-secondary);font-size:.85rem;margin:8px 0 24px"></p>
     <div style="display:flex;gap:10px;justify-content:center">
@@ -216,5 +223,24 @@
 <script src="js/auth.js"></script>
 <script src="js/problems.js"></script>
 <script src="js/users.js"></script>
+<script>
+  // ── Mobile sidebar toggle ─────────────────
+  function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('open');
+    document.getElementById('sidebar-overlay').classList.toggle('active');
+  }
+  function closeSidebar() {
+    document.querySelector('.sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').classList.remove('active');
+  }
+  // Close sidebar when a nav button is clicked on mobile
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (window.innerWidth <= 768) closeSidebar();
+    });
+  });
+  // Close on Escape key
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
+</script>
 </body>
 </html>
