@@ -1,5 +1,5 @@
 
-const API   = localStorage.getItem('admin_api') || 'https:
+const API   = localStorage.getItem('admin_api') || 'https://leetcode-admin.vercel.app';
 const TOKEN = localStorage.getItem('admin_token');
 const ADMIN = JSON.parse(localStorage.getItem('admin_user') || 'null');
 
@@ -58,7 +58,7 @@ function toast(msg, type = 'info') {
   const id  = ++_tid;
   const el  = document.createElement('div');
   el.className = `toast ${type}`;
-  el.innerHTML = `<span>${type === 'success' ? '' : type === 'error' ? '' : ''}</span><span>${msg}</span>`;
+  el.innerHTML = `<span>${type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ'}</span><span>${msg}</span>`;
   document.getElementById('toasts').appendChild(el);
   setTimeout(() => el.remove(), 3500);
 }
