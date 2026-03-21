@@ -1,76 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeForge Admin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body class="login-page">
-  <div class="login-card">
-    <div class="login-logo">CodeForge Admin</div>
-    <h2>Admin Sign In</h2>
-    <p class="login-sub">Enter your admin credentials to continue</p>
-
-    <div id="login-error" class="error-msg hidden"></div>
-
-    <div class="field">
-      <label>Email</label>
-      <input id="email" type="email" class="input" placeholder="Enter your email" />
-    </div>
-    <div class="field">
-      <label>Password</label>
-      <input id="password" type="password" class="input" placeholder="Enter your password" />
-    </div>
-    <button id="login-btn" class="btn btn-primary w-full" onclick="doLogin()">Sign In</button>
-  </div>
-
-  <script>
-    const API = 'https://leetcode-backend-1-azl8.onrender.com';
-
-    if (localStorage.getItem('admin_token')) window.location.href = 'dashboard.html';
-
-    async function doLogin() {
-      const email    = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
-      const errEl    = document.getElementById('login-error');
-      const btn      = document.getElementById('login-btn');
-      errEl.classList.add('hidden');
-
-      if (!email || !password) { showErr('Please fill all fields.'); return; }
-      btn.disabled = true;
-      btn.innerHTML = '<span class="spinner"></span> Signing in…';
-
-      try {
-        const res  = await fetch(`${API}/api/users/admin-login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password }),
-        });
-        const data = await res.json();
-        if (!res.ok) { showErr(data.error || 'Login failed'); return; }
-        if (!data.user.isAdmin) { showErr('Not an admin account.'); return; }
-        localStorage.setItem('admin_token', data.token);
-        localStorage.setItem('admin_user', JSON.stringify(data.user));
-        localStorage.setItem('admin_api', API);
-        window.location.href = 'dashboard.html';
-      } catch(e) {
-        showErr('Cannot connect to server.');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Sign In';
-      }
-    }
-
-    function showErr(msg) {
-      const el = document.getElementById('login-error');
-      el.textContent = msg;
-      el.classList.remove('hidden');
-    }
-
-    document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeForge Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
