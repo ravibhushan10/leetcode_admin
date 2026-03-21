@@ -1,12 +1,9 @@
-// ════════════════════════════════════════════
-//  CODEFORGE ADMIN — Problems Manager
-// ════════════════════════════════════════════
 
 let allProblems  = [];
 let editingId    = null;
 let deleteTarget = null;
 
-// ── Load & render ─────────────────────────────
+
 async function loadProblems() {
   document.getElementById('problems-body').innerHTML =
     '<tr><td colspan="7" class="loading-row"><span class="spinner"></span> Loading…</td></tr>';
@@ -64,7 +61,7 @@ function renderProblemsTable(probs) {
     </tr>`).join('');
 }
 
-// ── Filter ────────────────────────────────────
+
 function filterProblems() {
   const q    = (document.getElementById('prob-search')?.value || '').toLowerCase();
   const diff = document.getElementById('prob-diff')?.value || '';
@@ -79,7 +76,7 @@ function filterProblems() {
   renderProblemsTable(filtered);
 }
 
-// ── Add modal ─────────────────────────────────
+
 function openAddModal() {
   editingId = null;
   document.getElementById('modal-prob-title').textContent = '+ Add New Problem';
@@ -94,7 +91,7 @@ function openAddModal() {
   openModal('modal-problem');
 }
 
-// ── Edit modal ────────────────────────────────
+
 function openEditModal(id) {
   const p = allProblems.find(x => x._id === id);
   if (!p) { toast('Problem not found in cache — try refreshing', 'error'); return; }
@@ -125,7 +122,7 @@ function openEditModal(id) {
   openModal('modal-problem');
 }
 
-// ── Save (create or update) ───────────────────
+
 async function saveProblem() {
   const title = document.getElementById('pm-title')?.value.trim();
   const desc  = document.getElementById('pm-desc')?.value.trim();
@@ -185,7 +182,7 @@ async function saveProblem() {
   }
 }
 
-// ── Toggle premium ────────────────────────────
+
 async function togglePremium(id, checkbox) {
   const prev = checkbox.checked;
   try {
@@ -201,7 +198,7 @@ async function togglePremium(id, checkbox) {
   }
 }
 
-// ── Delete by MongoDB _id ─────────────────────
+
 function deleteProblemById(id, title, number) {
   cfConfirm(
     `Delete "${title}"?`,
@@ -218,7 +215,7 @@ function deleteProblemById(id, title, number) {
   );
 }
 
-// ── Delete by number modal ────────────────────
+
 function openDeleteModal() {
   deleteTarget = null;
   const numEl = document.getElementById('del-num');
@@ -277,11 +274,11 @@ async function confirmDeleteByNum() {
   }
 }
 
-// ── Upload JSON file ──────────────────────────
+
 async function uploadJSON(input) {
   const file = input.files[0];
   if (!file) return;
-  input.value = ''; // reset so same file can be re-uploaded
+  input.value = '';
 
   let parsed;
   try {
@@ -317,7 +314,7 @@ async function uploadJSON(input) {
   }
 }
 
-// ── Utility ───────────────────────────────────
+
 function escHtml(str) {
   return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }

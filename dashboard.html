@@ -50,7 +50,7 @@
 
       <!-- Search & filter -->
       <div class="filter-row">
-        <input class="input" id="prob-search" placeholder="🔍 Search problems…" oninput="filterProblems()" style="max-width:300px" />
+        <input class="input" id="prob-search" placeholder="Search problems…" oninput="filterProblems()" style="max-width:300px" />
         <select class="input" id="prob-diff" onchange="filterProblems()" style="max-width:160px">
           <option value="">All Difficulty</option>
           <option value="Easy">Easy</option>
@@ -123,7 +123,6 @@
           <div class="stat-label">Pro Users</div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">🔒</div>
           <div class="stat-val" id="s-premium">—</div>
           <div class="stat-label">Premium Problems</div>
         </div>
@@ -132,7 +131,6 @@
   </main>
 </div>
 
-<!-- ── ADD / EDIT PROBLEM MODAL ── -->
 <div id="modal-problem" class="modal-overlay hidden">
   <div class="modal large-modal">
     <button class="modal-close" onclick="closeModal('modal-problem')">✕</button>
@@ -185,7 +183,6 @@
   </div>
 </div>
 
-<!-- ── DELETE BY NUMBER MODAL ── -->
 <div id="modal-delete-num" class="modal-overlay hidden">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('modal-delete-num')">✕</button>
@@ -204,7 +201,7 @@
   </div>
 </div>
 
-<!-- ── CONFIRM MODAL ── -->
+
 <div id="modal-confirm" class="modal-overlay hidden">
   <div class="modal" style="max-width:400px;text-align:center">
 
@@ -217,14 +214,14 @@
   </div>
 </div>
 
-<!-- ── TOAST ── -->
+
 <div id="toasts" class="toast-container"></div>
 
 <script src="js/auth.js"></script>
 <script src="js/problems.js"></script>
 <script src="js/users.js"></script>
 <script>
-  // ── Mobile sidebar toggle ─────────────────
+
   function toggleSidebar() {
     document.querySelector('.sidebar').classList.toggle('open');
     document.getElementById('sidebar-overlay').classList.toggle('active');
@@ -233,13 +230,13 @@
     document.querySelector('.sidebar').classList.remove('open');
     document.getElementById('sidebar-overlay').classList.remove('active');
   }
-  // Close sidebar when a nav button is clicked on mobile
+
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       if (window.innerWidth <= 768) closeSidebar();
     });
   });
-  // Close on Escape key
+
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSidebar(); });
 </script>
 </body>

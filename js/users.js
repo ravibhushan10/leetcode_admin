@@ -1,10 +1,7 @@
-// ════════════════════════════════════════════
-//  CODEFORGE ADMIN — Users Manager
-// ════════════════════════════════════════════
 
 let allUsers = [];
 
-// ── Load & render users ───────────────────────
+
 async function loadUsers() {
   document.getElementById('users-body').innerHTML =
     '<tr><td colspan="7" class="loading-row"><span class="spinner"></span> Loading…</td></tr>';
@@ -46,7 +43,7 @@ function renderUsersTable(users) {
       <td>
         <div class="action-btns">
           <button class="btn btn-ghost btn-sm" onclick="toggleUserPro('${u._id}', '${u.plan}')">
-            ${u.plan === 'pro' ? 'Revoke Pro' : '→ Pro'}
+            ${u.plan === 'pro' ? 'Revoke Pro' : ' Pro'}
           </button>
           ${!u.isAdmin
             ? `<button class="btn btn-danger btn-sm" onclick="deleteUser('${u._id}', '${escHtml(u.name).replace(/'/g,"\\'")}')">🗑</button>`
@@ -56,7 +53,7 @@ function renderUsersTable(users) {
     </tr>`).join('');
 }
 
-// ── Toggle pro plan ───────────────────────────
+
 async function toggleUserPro(id, currentPlan) {
   try {
     const result = await apiFetch(`/api/users/${id}/plan`, { method: 'PATCH' });
@@ -69,7 +66,7 @@ async function toggleUserPro(id, currentPlan) {
   }
 }
 
-// ── Delete user ───────────────────────────────
+
 function deleteUser(id, name) {
   cfConfirm(
     `Delete user "${name}"?`,
@@ -86,7 +83,7 @@ function deleteUser(id, name) {
   );
 }
 
-// ── Utility ───────────────────────────────────
+
 function escHtml(str) {
   return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
